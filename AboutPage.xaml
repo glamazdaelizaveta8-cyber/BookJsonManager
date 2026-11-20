@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookJsonManager.AboutPage"
+             Title="Про програму">
+    <VerticalStackLayout Padding="24" Spacing="10" MaximumWidthRequest="500">
+        <Label Text="Каталог книг (JSON-диспетчер)" FontSize="20" FontAttributes="Bold" />
+        <Label Text="ПІБ: Гламазда Єлизавета" />
+        <Label Text="Курс: 2" />
+        <Label Text="Група: К-27" />
+        <Label Text="Рік: 2026" />
+        <Label Text="Опис: програма відкриває JSON-файл із каталогом книг, показує дані в таблиці, дозволяє додавати, редагувати та видаляти записи, шукати за автором, жанром і роками видання (LINQ) та зберігати зміни у JSON-файл."
+               LineBreakMode="WordWrap" />
+        <Button Text="Закрити" Clicked="OnCloseClicked" HorizontalOptions="Start" />
+    </VerticalStackLayout>
+</ContentPage>

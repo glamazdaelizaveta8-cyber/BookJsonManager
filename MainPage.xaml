@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:BookJsonManager.Models"
+             x:Class="BookJsonManager.MainPage"
+             Title="Каталог книг (JSON)">
+
+    <!-- Головне меню -->
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Файл">
+            <MenuFlyoutItem Text="Відкрити..." Clicked="OnOpenClicked" />
+            <MenuFlyoutItem Text="Зберегти" Clicked="OnSaveClicked" />
+            <MenuFlyoutItem Text="Зберегти як..." Clicked="OnSaveAsClicked" />
+        </MenuBarItem>
+        <MenuBarItem Text="Дані">
+            <MenuFlyoutItem Text="Додати" Clicked="OnAddClicked" />
+            <MenuFlyoutItem Text="Редагувати" Clicked="OnEditClicked" />
+            <MenuFlyoutItem Text="Видалити" Clicked="OnDeleteClicked" />
+        </MenuBarItem>
+        <MenuBarItem Text="Довідка">
+            <MenuFlyoutItem Text="Про програму" Clicked="OnAboutClicked" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" Padding="12" RowSpacing="8">
+
+        <!-- Пошук (LINQ): автор, жанр, діапазон років -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,*,110,110,Auto" ColumnSpacing="8">
+            <Entry x:Name="AuthorEntry" Grid.Column="0" Placeholder="Автор містить..."
+                   TextChanged="OnFilterChanged" />
+            <Picker x:Name="GenrePicker" Grid.Column="1" Title="Жанр"
+                    SelectedIndexChanged="OnFilterChanged" />
+            <Entry x:Name="YearFromEntry" Grid.Column="2" Placeholder="Рік від"
+                   Keyboard="Numeric" TextChanged="OnFilterChanged" />
+            <Entry x:Name="YearToEntry" Grid.Column="3" Placeholder="Рік до"
+                   Keyboard="Numeric" TextChanged="OnFilterChanged" />
+            <Button Grid.Column="4" Text="Скинути" Clicked="OnResetClicked" />
+        </Grid>
+
+        <!-- Кнопки, що дублюють меню -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="8">
+            <Button Text="Відкрити" Clicked="OnOpenClicked" />
+            <Button Text="Зберегти" Clicked="OnSaveClicked" />
+            <Button Text="Зберегти як" Clicked="OnSaveAsClicked" />
+            <Button Text="Додати" Clicked="OnAddClicked" />
+            <Button Text="Редагувати" Clicked="OnEditClicked" />
+            <Button Text="Видалити" Clicked="OnDeleteClicked" />
+            <Button Text="Про програму" Clicked="OnAboutClicked" />
+        </HorizontalStackLayout>
+
+        <!-- Заголовок таблиці (Grid) -->
+        <Grid Grid.Row="2" ColumnDefinitions="3*,2*,2*,*,*,*" BackgroundColor="LightGray" Padding="8,6">
+            <Label Grid.Column="0" Text="Назва" TextColor="Black" FontAttributes="Bold" />
+            <Label Grid.Column="1" Text="Автор" TextColor="Black" FontAttributes="Bold" />
+            <Label Grid.Column="2" Text="Жанр" TextColor="Black" FontAttributes="Bold" />
+            <Label Grid.Column="3" Text="Рік" TextColor="Black" FontAttributes="Bold" />
+            <Label Grid.Column="4" Text="Сторінок" TextColor="Black" FontAttributes="Bold" />
+            <Label Grid.Column="5" Text="Рейтинг" TextColor="Black" FontAttributes="Bold" />
+        </Grid>
+
+        <!-- Рядки таблиці -->
+        <CollectionView Grid.Row="3" x:Name="BooksView" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Book">
+                    <Grid ColumnDefinitions="3*,2*,2*,*,*,*" Padding="8,6">
+                        <Label Grid.Column="0" Text="{Binding Title}" />
+                        <Label Grid.Column="1" Text="{Binding Author}" />
+                        <Label Grid.Column="2" Text="{Binding Genre}" />
+                        <Label Grid.Column="3" Text="{Binding Year}" />
+                        <Label Grid.Column="4" Text="{Binding Pages}" />
+                        <Label Grid.Column="5" Text="{Binding Rating}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Grid.Row="4" x:Name="StatusLabel" FontSize="12" />
+    </Grid>
+</ContentPage>

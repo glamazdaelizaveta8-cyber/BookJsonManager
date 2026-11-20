@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookJsonManager.BookEditPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="8" MaximumWidthRequest="500">
+            <Label Text="Назва" />
+            <Entry x:Name="TitleEntry" />
+            <Label Text="Автор" />
+            <Entry x:Name="AuthorEntry" />
+            <Label Text="Жанр" />
+            <Entry x:Name="GenreEntry" />
+            <Label Text="Рік видання" />
+            <Entry x:Name="YearEntry" Keyboard="Numeric" />
+            <Label Text="Кількість сторінок" />
+            <Entry x:Name="PagesEntry" Keyboard="Numeric" />
+            <Label Text="Рейтинг (1-5)" />
+            <Entry x:Name="RatingEntry" Keyboard="Numeric" />
+
+            <Label x:Name="ErrorLabel" TextColor="Red" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Зберегти" Clicked="OnSaveClicked" />
+                <Button Text="Скасувати" Clicked="OnCancelClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
